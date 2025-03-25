@@ -4,6 +4,12 @@ This script extracts specific fields from YAML files (`.yml` or `.yaml`) within 
 
 This is to extract data from a proprietary .yml format to a CSV format for data engineering purposes.
 
+## IMPORTANT! - Use Python
+
+instead of using ```node extract.js``` you can use ```python extract.py``` - This is for cases where it's difficult to use npm deps within a project.
+
+The python version is zero dependency.
+
 ## Fields Captured
 
 The script captures the following fields from each service definition within the YAML files:
