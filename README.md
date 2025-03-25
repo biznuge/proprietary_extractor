@@ -10,6 +10,10 @@ instead of using ```node extract.js``` you can use ```python extract.py``` - Thi
 
 The python version is zero dependency.
 
+```
+python extract.py --path ./config_folder
+```
+
 ## Fields Captured
 
 The script captures the following fields from each service definition within the YAML files:
