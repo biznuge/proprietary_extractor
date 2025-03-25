@@ -1,0 +1,65 @@
+services:
+  - name: sample-api-v1-production
+    url: https://sample-production.example.com/api/v1
+    timeout:
+      secs: 30
+      retries: 3
+    tls_verify_upstream: true
+    routes:
+      host: api.example.com
+      consumer_path: "/sample-api-v1"
+      http_methods: "GET, POST"
+    plugins:
+      rate_limiting:
+        redis:
+          host: redis-production.example.com
+          ssl: true
+          auth_enabled: true
+          per_second: 5
+
+  - name: another-service-beta
+    url: https://beta.internal.example.net:8080/data
+    timeout:
+      secs: 15
+      retries: 2
+    tls_verify_upstream: false
+    routes:
+      host: internal.example.net
+      consumer_path: "/beta-data"
+      http_methods: "GET, HEAD, OPTIONS"
+    plugins:
+      authentication:
+        type: basic-auth
+      logging:
+        level: INFO
+
+  - name: third-party-integration
+    url: https://external.partner.org/v2/resource
+    timeout:
+      secs: 60
+      retries: 5
+    tls_verify_upstream: true
+    routes:
+      host: integration.example-apps.io
+      consumer_path: "/third-party"
+      http_methods: "POST"
+    plugins:
+      request_transformer:
+        add_headers:
+          - "X-API-Key: some-secret-key"
+
+  - name: fourth-party-integration
+    url: https://external.partner.org/v2/resource
+    timeout:
+      secs: 60
+      retries: 5
+    tls_verify_upstream: true
+    routes:
+      host: integration.example-apps.io
+      consumer_path: "/third-party"
+      http_methods: "POST"
+    plugins:
+      request_transformer:
+        add_headers:
+          - "X-API-Key: some-secret-key"
+
