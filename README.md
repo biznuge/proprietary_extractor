@@ -82,9 +82,8 @@ These instructions assume you have Node.js version 20 installed, however the scr
 If you have a Git repository for this script, clone it to your local machine:
 
 ```
-git clone <repository_url>
-cd <repository_name>
-Replace <repository_url> with the URL of your repository and <repository_name> with the name of the cloned directory.
+git clone git@github.com:biznuge/proprietary_extractor.git
+cd proprietary_extractor
 ```
 
 ### Install Dependencies:
