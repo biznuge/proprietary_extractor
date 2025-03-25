@@ -27,12 +27,12 @@ npm install js-yaml
 ```
 
 ## Usage
-Save the script: Save the provided Node.js script (e.g., as extract_yaml_data.js).
+Save the script: Save the provided Node.js script (e.g., as extract.js).
 
 Run the script: Open your terminal or command prompt, navigate to the directory where you saved the script, and run it using Node.js:
 
 ```
-node extract_yaml_data.js [directory_path]
+node extract.js [directory_path]
 ```
 
 Replace [directory_path] with the path to the directory containing your YAML files.
@@ -43,19 +43,19 @@ If you omit [directory_path], the script will search the current directory and i
 
 Search in a relative directory named config:
 
-```node extract_yaml_data.js --path config```
+```node extract.js --path config```
 
 Search in an absolute directory:
 
-```node extract_yaml_data.js --path  /home/user/my_configs```
+```node extract.js --path  /home/user/my_configs```
 
 Search in the current directory and its subdirectories:
 
-```node extract_yaml_data.js```
+```node extract.js```
 
 or
 
-```node extract_yaml_data.js --path  . ```
+```node extract.js --path  . ```
 
 ## Example Usage of --output flag
 
@@ -63,11 +63,11 @@ or
 
 Change the name of the output file like so
 
-```node extract_yaml_data.js --output my-extract.csv```
+```node extract.js --output my-extract.csv```
 
 Or to default to 'extracted_data.csv' omit the flag
 
-```node extract_yaml_data.js```
+```node extract.js```
 
 ## Output
 
@@ -101,7 +101,7 @@ This will install all dependencies listed in the package.json file (if you have 
 
 ### Run the Script with test data:
 
-Execute the extract_yaml_data.js script, providing the directory path as an argument:
+Execute the extract.js script, providing the directory path as an argument:
 
 ```
 node extract.js --path ./config_folder
