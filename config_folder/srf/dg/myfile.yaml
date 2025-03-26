@@ -63,3 +63,49 @@ services:
         add_headers:
           - "X-API-Key: some-secret-key"
 
+  - name: TESTING URL HAS WHITESPACE CHARACTERS (Tab SPACE NEWLINE)
+    url:   
+      https://URL_WITH_WHITESPACE.org/v2/resource
+    timeout:
+      secs: 60
+      retries: 5
+    tls_verify_upstream: true
+    routes:
+      host: URL_WITH_WHITESPACE.example-apps.io
+      consumer_path: "/third-party"
+      http_methods: "POST"
+    plugins:
+      request_transformer:
+        add_headers:
+          - "X-API-Key: some-secret-key"
+
+  - name: TESTING HOST IS A COLLECTION WITH 1 ELEMENT
+    url: https://HOST-ARRAY-ONE-ELEMENT.org/v2/resource
+    timeout:
+      secs: 60
+      retries: 5
+    tls_verify_upstream: true
+    routes:
+      - host: HOST-ARRAY-ONE-ELEMENT.example-apps.io
+        consumer_path: "/third-party"
+        http_methods: "POST"
+    plugins:
+      request_transformer:
+        add_headers:
+          - "X-API-Key: some-secret-key"
+
+  - name: TESTING URL WHITESPACE AND HOST IS A COLLECTION WITH 1 ELEMENT
+    url: https://URL_AND_HOST.org/v2/resource
+    timeout:
+      secs: 60
+      retries: 5
+    tls_verify_upstream: true
+    routes:
+      - host: URL_AND_HOST.example-apps.io
+        consumer_path: "/third-party"
+        http_methods: "POST"
+    plugins:
+      request_transformer:
+        add_headers:
+          - "X-API-Key: some-secret-key"
+

@@ -1,0 +1,12 @@
+Filename,Services.name,Services.url,Services.routes.host,Services.routes.consumer_path
+test1/mine.yml,"sample-api-v1-production","https://sample-prsdfsrgfoduction.example.com/api/v1","api.example.com","/samygjhgple-api-v1"
+test1/mine.yml,"another-service-beta","https://beta.jhginternal.example.net:8080/data","internal.example.net","/bjhgjeta-data"
+test1/mine.yml,"fourth-party-integration","https://external.pjhgjhgartner.org/v2/resource","integration.exajhgmple-apps.io","/thirdjhg-party"
+test1/mine.yml,"third-party-integration","https://external.pjhgjhgartner.org/v2/resource","integration.exajhgmple-apps.io","/thirdjhg-party"
+srf/dg/myfile.yaml,"sample-api-v1-production","https://sample-production.example.com/api/v1","api.example.com","/sample-api-v1"
+srf/dg/myfile.yaml,"another-service-beta","https://beta.internal.example.net:8080/data","internal.example.net","/beta-data"
+srf/dg/myfile.yaml,"third-party-integration","https://external.partner.org/v2/resource","integration.example-apps.io","/third-party"
+srf/dg/myfile.yaml,"fourth-party-integration","https://external.partner.org/v2/resource","integration.example-apps.io","/third-party"
+srf/dg/myfile.yaml,"TESTING URL HAS WHITESPACE CHARACTERS (Tab SPACE NEWLINE)","https://URL_WITH_WHITESPACE.org/v2/resource","URL_WITH_WHITESPACE.example-apps.io","/third-party"
+srf/dg/myfile.yaml,"TESTING HOST IS A COLLECTION WITH 1 ELEMENT","https://HOST-ARRAY-ONE-ELEMENT.org/v2/resource","HOST-ARRAY-ONE-ELEMENT.example-apps.io",""
+srf/dg/myfile.yaml,"TESTING URL WHITESPACE AND HOST IS A COLLECTION WITH 1 ELEMENT","https://URL_AND_HOST.org/v2/resource","URL_AND_HOST.example-apps.io",""

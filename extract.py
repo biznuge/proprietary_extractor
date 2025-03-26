@@ -1,6 +1,6 @@
 import os
 import sys
-import re
+import yaml
 
 def find_yaml_files(start_path, root_path=None):
     if root_path is None:
@@ -18,17 +18,24 @@ def extract_data_and_convert_to_csv(yaml_files, root_path):
         try:
             absolute_file_path = os.path.join(root_path, relative_file_path)
             with open(absolute_file_path, 'r', encoding='utf-8') as file:
-                file_content = file.read()
+                data = yaml.safe_load(file)
 
-            service_regex = re.compile(
-                r'name:\s*([\w\d\-_]+).*?url:\s*(https?:\/\/[^\s]+).*?routes:\s*host:\s*([^\s]+).*?consumer_path:\s*"([^"]+)"',
-                re.IGNORECASE | re.DOTALL
-            )
-            matches = service_regex.findall(file_content)
+            if data and 'services' in data and isinstance(data['services'], list):
+                for service in data['services']:
+                    name = service.get('name', '')
+                    url = service.get('url', '').strip()  # Strip whitespace from URL
+                    routes = service.get('routes', {})
 
-            for match in matches:
-                name, url, host, consumer_path = match
-                csv_content += f'{relative_file_path},"{name}","{url}","{host}","{consumer_path}"\n'
+                    if isinstance(routes, list) and routes:
+                        host = routes[0].get('host', '').strip() if isinstance(routes[0], dict) else ''
+                    elif isinstance(routes, dict):
+                        host = routes.get('host', '').strip()
+                    else:
+                        host = ''
+
+                    consumer_path = routes.get('consumer_path', '').strip() if isinstance(routes, dict) else ''
+
+                    csv_content += f'{relative_file_path},"{name}","{url}","{host}","{consumer_path}"\n'
 
         except Exception as e:
             print(f'Error processing file: {relative_file_path}', e, file=sys.stderr)
@@ -44,7 +51,7 @@ def main():
     directory_to_search = './'
     output_filename = 'extracted_data.csv'
 
-    args = sys.argv[1:]  # Exclude script name
+    args = sys.argv[1:]
 
     i = 0
     while i < len(args):

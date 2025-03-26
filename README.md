@@ -2,18 +2,6 @@
 
 This script extracts specific fields from YAML files (`.yml` or `.yaml`) within a given directory structure and outputs them into a CSV file.
 
-This is to extract data from a proprietary .yml format to a CSV format for data engineering purposes.
-
-## IMPORTANT! - Use Python
-
-instead of using ```node extract.js``` you can use ```python extract.py``` - This is for cases where it's difficult to use npm deps within a project.
-
-The python version is zero dependency.
-
-```
-python extract.py --path ./config_folder
-```
-
 ## Fields Captured
 
 The script captures the following fields from each service definition within the YAML files:
@@ -24,96 +12,73 @@ The script captures the following fields from each service definition within the
 * **Services.routes.host:** The host specified in the service's routes.
 * **Services.routes.consumer_path:** The consumer path specified in the service's routes.
 
-## Low Dependency Installation
+## Dependencies
 
-This script has only one external dependency:
+* **PyYAML:** A YAML parser for Python.
 
-* **`js-yaml`:** A YAML parser for Node.js.
+## Installation
 
-To install it, run the following command in your project directory:
+1.  **Clone the Repository:**
+    * If you have a Git repository for this script, clone it to your local machine:
 
-```
-npm install js-yaml
-```
+        ```bash
+        git clone <repository_url>
+        cd <repository_name>
+        ```
+
+        Replace `<repository_url>` with the URL of your repository and `<repository_name>` with the name of the cloned directory.
+
+2.  **Install Dependencies:**
+    * Navigate to the project directory in your terminal.
+    * Install the required Python packages using `pip`:
+
+        ```bash
+        pip install -r requirements.txt
+        ```
+
+        This will install `pyyaml` (and any other dependencies listed in `requirements.txt`).
 
 ## Usage
-Save the script: Save the provided Node.js script (e.g., as extract.js).
 
-Run the script: Open your terminal or command prompt, navigate to the directory where you saved the script, and run it using Node.js:
+1.  **Run the script:** Open your terminal or command prompt, navigate to the directory where you saved the script, and run it using Python 3:
 
-```
-node extract.js [directory_path]
-```
+    ```bash
+    python3 extract.py --path [directory_path] --output [output_filename]
+    ```
 
-Replace [directory_path] with the path to the directory containing your YAML files.
+    > NOTE: JOHN - DO NOT USE TILDE '~' - Relative or absolute paths only. ;)
 
-If you omit [directory_path], the script will search the current directory and its subdirectories.
+    * Replace `[directory_path]` with the path to the directory containing your YAML files.
+    * Replace `[output_filename]` with the desired output filename.
+    * If you omit `--path`, the script will search the current directory and its subdirectories.
+    * If you omit `--output`, the output file will be named `extracted_data.csv`.
 
-## Example Usage of --path flag
+## Example Usage
 
-Search in a relative directory named config:
+* **Search in a relative directory named `config` and use the default output filename:**
 
-```node extract.js --path config```
+    ```bash
+    python3 extract.py --path config
+    ```
 
-Search in an absolute directory:
+* **Search in an absolute directory and specify a custom output filename:**
 
-```node extract.js --path  /home/user/my_configs```
+    ```bash
+    python3 extract.py --path /home/user/my_configs --output my_output.csv
+    ```
 
-Search in the current directory and its subdirectories:
+* **Search in the current directory and use a custom output filename:**
 
-```node extract.js```
+    ```bash
+    python3 extract.py --output results.csv
+    ```
 
-or
+* **Search in the current directory and use the default output filename:**
 
-```node extract.js --path  . ```
-
-## Example Usage of --output flag
-
-> Note: Only filename can be changed, not path.
-
-Change the name of the output file like so
-
-```node extract.js --output my-extract.csv```
-
-Or to default to 'extracted_data.csv' omit the flag
-
-```node extract.js```
+    ```bash
+    python3 extract.py
+    ```
 
 ## Output
 
-The script will generate a CSV file named extracted_data.csv in the same directory as the script. This file will contain the extracted data in the specified format.
-
-## Pull, Install, and Run (Node.js 20)
-
-These instructions assume you have Node.js version 20 installed, however the script may work (untested as yet) on versions above and below this.
-
-### Clone the Repository:
-
-If you have a Git repository for this script, clone it to your local machine:
-
-```
-git clone git@github.com:biznuge/proprietary_extractor.git
-cd proprietary_extractor
-```
-
-### Install Dependencies:
-
-Navigate to the project directory in your terminal.
-
-Install the js-yaml dependency using npm:
-
-```
-npm install
-```
-
-This will install all dependencies listed in the package.json file (if you have one) or just js-yaml if that is the only dependency.
-
-### Run the Script with test data:
-
-Execute the extract.js script, providing the directory path as an argument:
-
-```
-node extract.js --path ./config_folder
-```
-
-To run this script with your own content, point this script at it using the --path flag.
+The script will generate a CSV file with the specified name in the same directory as the script. This file will contain the extracted data in the specified format.
