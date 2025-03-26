@@ -23,17 +23,18 @@ def extract_data_and_convert_to_csv(yaml_files, root_path):
             if data and 'services' in data and isinstance(data['services'], list):
                 for service in data['services']:
                     name = service.get('name', '')
-                    url = service.get('url', '').strip()  # Strip whitespace from URL
+                    url = service.get('url', '').strip()
                     routes = service.get('routes', {})
 
                     if isinstance(routes, list) and routes:
                         host = routes[0].get('host', '').strip() if isinstance(routes[0], dict) else ''
+                        consumer_path = routes[0].get('consumer_path', '').strip() if isinstance(routes[0], dict) else ''
                     elif isinstance(routes, dict):
                         host = routes.get('host', '').strip()
+                        consumer_path = routes.get('consumer_path', '').strip()
                     else:
                         host = ''
-
-                    consumer_path = routes.get('consumer_path', '').strip() if isinstance(routes, dict) else ''
+                        consumer_path = ''
 
                     csv_content += f'{relative_file_path},"{name}","{url}","{host}","{consumer_path}"\n'
 
